@@ -2,7 +2,10 @@
 
 echo "Launching tensorboard..."
 
-sleep 5m
+export LANG=en_US.UTF-8 LANGUAGE=en_US.en 
+export LC_ALL=en_US.UTF-8
+
+sleep 1m
 
 MODELPATH=$1
 
