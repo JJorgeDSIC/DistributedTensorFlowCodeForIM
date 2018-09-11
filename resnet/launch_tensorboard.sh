@@ -9,4 +9,4 @@ sleep 1m
 
 MODELPATH=$1
 
-tensorboard --logdir=$MODELPATH &
+tensorboard --logdir=$MODELPATH > tensorboard_log.txt 2>&1 &
