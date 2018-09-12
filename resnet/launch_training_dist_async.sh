@@ -43,6 +43,18 @@ else
 	fi
 fi
 
+echo "Configuration:"
 echo $TF_CONFIG
 
-time python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME".txt 2> err_"$HOSTNAME".txt
+echo $TF_CONFIG > /tmp/config.txt
+
+echo "Debugging..."
+if [ "$JOB" == "master" ]
+then
+	/opt/hadoop/bin/hadoop fs -put /tmp/onfig.txt /cifar-10-model/
+
+fi
+
+sleep 5m
+
+#time python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME"_async.txt 2> err_"$HOSTNAME"_async.txt
