@@ -51,7 +51,7 @@ echo $TF_CONFIG > /tmp/config.txt
 echo "Debugging..."
 if [ "$JOB" == "master" ]
 then
-	/opt/hadoop/bin/hadoop fs -put /tmp/onfig.txt /cifar-10-model/
+	/opt/hadoop/bin/hadoop fs -put /tmp/config.txt /cifar-10-model/
 
 fi
 
