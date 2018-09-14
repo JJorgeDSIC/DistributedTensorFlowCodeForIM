@@ -1,10 +1,8 @@
 #!/bin/bash
 echo "Setting paths..."
-source /etc/bash.bashrc
+$(cat /home/ubuntu/.bashrc | grep LD_LIBRARY_PATH)
 
-echo $LD_LIBRARY_PATH > log.txt
-
-export CUDA_VISIBLE_DEVICES=0
+echo $LD_LIBRARY_PATH > log_data.txt
 
 echo "Running downloading script"
-python3 generate_cifar10_tfrecords.py --data-dir=/tmp/cifar-10-data/ >> log.txt
+python3 generate_cifar10_tfrecords.py --data-dir=/tmp/cifar-10-data/ >> log_data.txt

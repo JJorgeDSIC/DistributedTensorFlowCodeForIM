@@ -46,10 +46,8 @@ fi
 echo $TF_CONFIG > log_env.txt
 
 echo "Setting paths..."
-source /etc/bash.bashrc
+$(cat /home/ubuntu/.bashrc | grep LD_LIBRARY_PATH)
 
 echo $LD_LIBRARY_PATH >> log_env.txt
-
-export CUDA_VISIBLE_DEVICES=0
 
 nohup python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS >> log_"$HOSTNAME".txt 2> err_"$HOSTNAME".txt &
