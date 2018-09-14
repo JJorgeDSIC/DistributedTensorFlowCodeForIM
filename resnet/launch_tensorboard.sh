@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Setting paths..."
+$(cat /home/ubuntu/.bashrc | grep LD_LIBRARY_PATH)
 
 echo "Launching tensorboard..."
 
