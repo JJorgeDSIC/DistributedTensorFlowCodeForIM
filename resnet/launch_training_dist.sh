@@ -42,17 +42,13 @@ else
 	fi
 fi
 
-echo $TF_CONFIG > log_env.txt
 
 echo "Setting paths..."
-$(cat /home/ubuntu/.bashrc | grep HADOOP_HOME)
-$(cat /home/ubuntu/.bashrc | grep HADOOP_CONF_DIR)
-$(cat /home/ubuntu/.bashrc | grep PATH)
-$(cat /home/ubuntu/.bashrc | grep HADOOP_HDFS_HOME)
-$(cat /home/ubuntu/.bashrc | grep JAVA_HOME)
-$(cat /home/ubuntu/.bashrc | grep LD_LIBRARY_PATH)
-$(cat /home/ubuntu/.bashrc | grep CLASSPATH)
+
+export LD_LIBRARY_PATH=/home/ubuntu/src/cntk/bindings/python/cntk/libs:/usr/local/cuda/lib64:/usr/local/lib:/usr/lib:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/mpi/lib:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
+
+echo $TF_CONFIG > log_env.txt
 
 echo $LD_LIBRARY_PATH >> log_env.txt
 
-nohup python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS >> log_"$HOSTNAME".txt 2> err_"$HOSTNAME".txt &
+python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME".txt 2>&1 &
