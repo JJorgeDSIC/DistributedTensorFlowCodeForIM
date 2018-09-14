@@ -43,6 +43,13 @@ else
 	fi
 fi
 
-echo $TF_CONFIG
+echo $TF_CONFIG > log_env.txt
 
-nohup python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME".txt 2> err_"$HOSTNAME".txt &
+echo "Setting paths..."
+source /etc/bash.bashrc
+
+echo $LD_LIBRARY_PATH >> log_env.txt
+
+export CUDA_VISIBLE_DEVICES=0
+
+nohup python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS >> log_"$HOSTNAME".txt 2> err_"$HOSTNAME".txt &
