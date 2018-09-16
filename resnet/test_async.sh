@@ -12,6 +12,8 @@ WLIST=$8
 CORRECTEDPSLIT=$(echo $PSLIST | sed -e 's/,/","/g')
 CORRECTEDWLIST=$(echo $WLIST | sed -e 's/,/","/g')
 
+source ~/.bashrc
+
 export TF_CONFIG='{ "environment": "cloud", "model_dir": "'$MODELPATH'", "cluster": { "master": ["'$MASTER'"], "ps": ["'$CORRECTEDPSLIT'"]}, "task": {"type": "'$JOB'", "index": 0} }' 
 
 echo "Setting paths..."
