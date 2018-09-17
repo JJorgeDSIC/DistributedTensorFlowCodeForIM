@@ -60,4 +60,9 @@ echo $TF_CONFIG > log_env.txt
 
 echo $LD_LIBRARY_PATH >> log_env.txt
 
-time python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME"_async.txt 2> err_"$HOSTNAME"_async.txt
+if [ "$JOB" == "ps" ]
+then
+	python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME"_async.txt 2> err_"$HOSTNAME"_async.txt &
+else
+	python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME"_async.txt 2> err_"$HOSTNAME"_async.txt 
+fi
