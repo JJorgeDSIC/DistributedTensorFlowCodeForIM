@@ -8,6 +8,8 @@ JOB=$5
 PSLIST=$6
 MASTER=$7
 WLIST=$8
+PSNODES=$9
+WNODES=$10
 
 CORRECTEDPSLIT=$(echo $PSLIST | sed -e 's/,/","/g')
 CORRECTEDWLIST=$(echo $WLIST | sed -e 's/,/","/g')
@@ -27,7 +29,6 @@ export CLASSPATH=$(${HADOOP_HDFS_HOME}/bin/hadoop classpath --glob)
 if [ $WNODES -eq 0 ]
 then
 	export TF_CONFIG='{ "environment": "cloud", "model_dir": "'$MODELPATH'", "cluster": { "master": ["'$MASTER'"], "ps": ["'$CORRECTEDPSLIT'"]}, "task": {"type": "'$JOB'", "index": 0} }' 
-
 else
 
 	NODENAME=$(echo $HOSTNAME | awk -F. '{print $1}')
