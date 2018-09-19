@@ -52,6 +52,7 @@ else
 	if [ $WNODES -eq 1 ]
 	then
 		MASTER=$WLIST
+		WORKERJOB=master
 		export TF_CONFIG='{ "environment": "cloud", "model_dir": "'$MODELPATH'", "cluster": { "master": ["'$MASTER'"], "ps": ["'$CORRECTEDPSLIST'"]}, "task": {"type": "master", "index": 0} }' 
 	else
 		#More than one worker, deal with it
