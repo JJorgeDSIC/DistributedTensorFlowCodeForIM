@@ -107,7 +107,7 @@ then
 else
 	if [ "$WORKERJOB" == "master" ]
 	then
-		echo "Master running async."
+		echo "Master running async." >> log_env.txt
 		python3 cifar10_main.py --data-dir=$DATAPATH --job-dir=$MODELPATH --num-gpus=$NUMGPUS --train-steps=$TRAINSTEPS > log_"$HOSTNAME"_async.txt 2> err_"$HOSTNAME"_async.txt 
 	else
 		echo "Worker running in bg."
